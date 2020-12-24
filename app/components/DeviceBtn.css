@@ -1,0 +1,21 @@
+.container {
+  height: 50px;
+  width: 25%;
+  background-color: white;
+  border-radius: 16px;
+  border-width: 1px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: black;
+  margin: 20px;
+  padding: 10px;
+}
+.container:hover{
+  cursor: pointer;
+}
+.title {
+  font-size: 14px;
+  font-weight: bold;
+  text-align: center;
+}
