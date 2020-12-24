@@ -1,4 +1,3 @@
-import { url } from 'inspector';
 import * as React from 'react';
 import DeviceBtn from '../components/DeviceBtn';
 import styles from './App.css';
@@ -42,14 +41,22 @@ class App extends React.PureComponent<Props, State> {
   }
 
   callApi = () => {
-    console.log('callApi');
-    fetch(this.state.url)
-      .then((res) => res.json())
+    console.log('callApi : ', this.state.url);
+    fetch(this.state.url, { method: 'GET' })
+      // .then((res) => )
       .then((data) => {
-        console.log('Res: ', data);
-        this.setState({ status: JSON.stringify(data), url: '' });
+        // console.log('Res: ', data?.json());
+        data?.json().then((rs1) => {
+          console.log('test_rs1: ', rs1);
+          this.setState({status: JSON.stringify(rs1) })
+        });
+
+        // this.setState({ status: JSON.stringify(data), url: '' });
       })
-      .catch((err) => this.setState({ status: 'Không đọc được API' }));
+      .catch((err) => {
+        this.setState({ status: 'Không đọc được API' });
+        console.log('ERR: ', err);
+      });
   };
 
   Open_Comm = () => {
@@ -92,7 +99,6 @@ class App extends React.PureComponent<Props, State> {
   };
 
   /// ----------------------------------
-
 
   render() {
     return (
